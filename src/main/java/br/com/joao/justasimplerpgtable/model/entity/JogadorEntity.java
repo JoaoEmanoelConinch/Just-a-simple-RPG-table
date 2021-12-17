@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +33,10 @@ public class JogadorEntity implements Serializable {
 	@Column(nullable = false, unique = true)
 	private String senha;
 
+	@Enumerated(EnumType.STRING)
 	private StatusJogador status;
+	
+	private boolean ativo = true;
 
 //	@OneToMany
 //	private List<Personagem> personagens;
@@ -43,12 +48,13 @@ public class JogadorEntity implements Serializable {
 	 * @param status
 	 * @param personagens
 	 */
-	public JogadorEntity(Long id, String nome, String senha, StatusJogador status/*, List<Personagem> personagens*/) {
+	public JogadorEntity(Long id, String nome, String senha, StatusJogador status/*, List<Personagem> personagens*/, Boolean ativo) {
 		this.id = id;
 		this.nome = nome;
 		this.senha = senha;
 		this.status = status;
 //		this.personagens = personagens;
+		this.setAtivo(ativo);
 	}
 
 	public JogadorEntity() {
@@ -122,6 +128,19 @@ public class JogadorEntity implements Serializable {
 //	 */
 //	public void setPersonagens(List<Personagem> personagens) {
 //		this.personagens = personagens;
+	
+	/**
+	 * @return the ativo
+	 */
+	public boolean getAtivo() {
+		return ativo;
+	}
+
+	/**
+	 * @param ativo the ativo to set
+	 */
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override
