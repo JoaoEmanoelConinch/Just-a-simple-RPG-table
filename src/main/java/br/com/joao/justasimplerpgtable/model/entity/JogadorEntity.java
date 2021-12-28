@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import br.com.joao.justasimplerpgtable.model.enumeration.StatusJogador;
+import br.com.joao.justasimplerpgtable.model.enumeratiom.StatusJogador;
 
 /**
  * @author JoaoEmanoelConinch
@@ -33,6 +33,7 @@ public class JogadorEntity implements Serializable {
 	@Column(nullable = false, unique = true)
 	private String senha;
 
+	//hitoria_jogedor
 	@Enumerated(EnumType.STRING)
 	private StatusJogador status;
 	
