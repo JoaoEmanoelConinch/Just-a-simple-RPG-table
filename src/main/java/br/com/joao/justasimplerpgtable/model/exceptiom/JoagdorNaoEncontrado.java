@@ -1,4 +1,4 @@
-package br.com.joao.justasimplerpgtable.model.service;
+package br.com.joao.justasimplerpgtable.model.exceptiom;
 
 import java.util.function.Supplier;
 
