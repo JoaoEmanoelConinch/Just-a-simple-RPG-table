@@ -2,11 +2,15 @@ package br.com.joao.justasimplerpgtable.model.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import br.com.joao.justasimplerpgtable.model.enumeratiom.Clase;
 import br.com.joao.justasimplerpgtable.model.enumeratiom.Genero;
@@ -16,41 +20,51 @@ public class PersonagemEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "id_personagem")
 	private Long id;
 	
-	@Column(nullable = false, columnDefinition = "text")
+	@Column(name = "nome_personagem", nullable = false, columnDefinition = "text")
 	private String nome;
 	
-	@Column(nullable = false, columnDefinition = "text")
+	@Column(name = "apeligo_personagem", nullable = false, columnDefinition = "text")
 	private String apelido;
 	
-	@Column(nullable = false)
+	@Column(name = "genero_personagem", nullable = false)
 	private Genero genero;
 	
-	@Column(nullable = false)
+	@Column(name = "ataque_personagem", nullable = false)
 	private Short ataque;
 	
-	@Column(nullable = false)
+	@Column(name = "defesa_personagem", nullable = false)
 	private Short defesa;
 	
-	@Column(nullable = false)
+	@Column(name = "agilidade_personagem", nullable = false)
 	private Short agilidade;
 	
-	@Column(nullable = false)
+	@Column(name = "hp_personagem", nullable = false)
 	private Short hp;
 	
-	@Column(nullable = false)
+	@Column(name = "mp_personagem", nullable = false)
 	private Short mp;
 	
-	@Column(nullable = false)
+	@Column(name = "classe_personagem", nullable = false)
 	private Clase clase;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_jogador")
+	private JogadorEntity jogador;
 	
 	//itens
 	
 	public PersonagemEntity() {}
 	
 	public PersonagemEntity(Long id, String nome, String apelido, Genero genero, Short ataque, Short defesa, Short agilidade, Short hp, Short mp, Clase clase){
+		this(nome, apelido, genero, ataque, defesa, agilidade, hp, mp, clase);
 		this.setId(id);
+		
+	}
+	
+	public PersonagemEntity(String nome, String apelido, Genero genero, Short ataque, Short defesa, Short agilidade, Short hp, Short mp, Clase clase){
 		this.setNome(nome);
 		this.setApelido(apelido);
 		this.setGenero(genero);

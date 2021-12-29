@@ -3,10 +3,12 @@ package br.com.joao.justasimplerpgtable.model.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,28 +21,30 @@ import br.com.joao.justasimplerpgtable.model.enumeratiom.StatusJogador;
  * @author JoaoEmanoelConinch
  *
  */
-@Entity
-@Table
+@Entity(name = "jogador")
+@Table(name = "jogador")
 public class JogadorEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_jogador")
 	private Long id;
 
-	@Column(nullable = false, unique = true)
+	@Column(name = "nome_jogador", nullable = false, unique = true)
 	private String nome;
 
-	@Column(nullable = false, unique = true)
+	@Column(name = "senha_jogador", nullable = false, unique = true)
 	private String senha;
 
-	//hitoria_jogedor
+	// hitoria_jogedor
 	@Enumerated(EnumType.STRING)
 	private StatusJogador status;
-	
+
+	@Column(name = "is_ativo_jogador")
 	private boolean ativo = true;
 
-//	@OneToMany
-//	private List<Personagem> personagens;
+	@OneToMany(mappedBy = "jogador", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<PersonagemEntity> personagens;
 
 	/**
 	 * @param id
@@ -49,12 +53,17 @@ public class JogadorEntity implements Serializable {
 	 * @param status
 	 * @param personagens
 	 */
-	public JogadorEntity(Long id, String nome, String senha, StatusJogador status/*, List<Personagem> personagens*/, Boolean ativo) {
-		this.id = id;
-		this.nome = nome;
-		this.senha = senha;
-		this.status = status;
-//		this.personagens = personagens;
+	public JogadorEntity(Long id, String nome, String senha, StatusJogador status, List<PersonagemEntity> personagens, Boolean ativo) {
+		this(nome,senha,status,personagens,ativo);
+		this.setId(id);
+	}
+
+	public JogadorEntity(String nome, String senha, StatusJogador status , List<PersonagemEntity> personagens,
+			Boolean ativo) {
+		this.setNome(nome);
+		this.setSenha(senha);
+		this.setStatus(status);
+		this.setPersonagens(personagens);
 		this.setAtivo(ativo);
 	}
 
@@ -117,19 +126,19 @@ public class JogadorEntity implements Serializable {
 		this.status = status;
 	}
 
-//	/**
-//	 * @return the personagens
-//	 */
-//	public List<Personagem> getPersonagens() {
-//		return personagens;
-//	}
-//
-//	/**
-//	 * @param personagens the personagens to set
-//	 */
-//	public void setPersonagens(List<Personagem> personagens) {
-//		this.personagens = personagens;
-	
+	/**
+	 * @return the personagens
+	 */
+	public List<PersonagemEntity> getPersonagens() {
+		return personagens;
+	}
+
+	/**
+	 * @param personagens the personagens to set
+	 */
+	public void setPersonagens(List<PersonagemEntity> personagens) {
+		this.personagens = personagens;
+	}
 	/**
 	 * @return the ativo
 	 */
