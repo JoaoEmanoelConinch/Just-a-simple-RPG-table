@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.joao.justasimplerpgtable.model.enumeratiom.Clase;
 import br.com.joao.justasimplerpgtable.model.enumeratiom.Genero;
 
@@ -52,6 +54,7 @@ public class PersonagemEntity implements Serializable {
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_jogador")
+	@JsonIgnore
 	private JogadorEntity jogador;
 	
 	//itens
