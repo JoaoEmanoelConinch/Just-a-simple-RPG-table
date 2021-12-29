@@ -199,4 +199,11 @@ public class PersonagemEntity implements Serializable {
 	public void setClase(Clase clase) {
 		this.clase = clase;
 	}
+	
+	public void setJogador(JogadorEntity jogador) {
+		this.jogador = jogador;
+	}
+	public JogadorEntity getJogador() {
+		return jogador;
+	}
 }
