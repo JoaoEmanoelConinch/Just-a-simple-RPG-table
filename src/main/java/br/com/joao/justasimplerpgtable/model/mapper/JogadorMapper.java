@@ -35,7 +35,7 @@ public class JogadorMapper {
 		return jogadorDtoCadastro;
 	}
 	
-	public JogadorEntity toEnatityByPedrao(JogadorDtoPadrao jogadorDtoPadrao) {
+	public JogadorEntity toEnatityByPadrao(JogadorDtoPadrao jogadorDtoPadrao) {
 		JogadorEntity jogadorEntity = new JogadorEntity();
 		jogadorEntity.setNome(jogadorDtoPadrao.nome);
 		jogadorEntity.setSenha(jogadorDtoPadrao.senha);
@@ -44,7 +44,7 @@ public class JogadorMapper {
 		return jogadorEntity;
 	}
 	
-	public JogadorDtoPadrao toDtoPedrao(JogadorEntity jogadorEntity) {
+	public JogadorDtoPadrao toDtoPadrao(JogadorEntity jogadorEntity) {
 		JogadorDtoPadrao jogadorDtoPadrao = new JogadorDtoPadrao();
 		jogadorDtoPadrao.nome=jogadorEntity.getNome();
 		jogadorDtoPadrao.senha=jogadorEntity.getSenha();
@@ -53,10 +53,10 @@ public class JogadorMapper {
 		return jogadorDtoPadrao;
 	}
 
-	public List<JogadorDtoPadrao> toDtoPedraoList(List<JogadorEntity> jogadorEntities) {
+	public List<JogadorDtoPadrao> toDtoPadraoList(List<JogadorEntity> jogadorEntities) {
 		ArrayList<JogadorDtoPadrao> dtoPadroes = new ArrayList<JogadorDtoPadrao>();
 		for (JogadorEntity jogadorEntity : jogadorEntities) {
-			dtoPadroes.add(this.toDtoPedrao(jogadorEntity));
+			dtoPadroes.add(this.toDtoPadrao(jogadorEntity));
 		}
 		return dtoPadroes;
 	}

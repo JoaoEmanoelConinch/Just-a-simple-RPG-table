@@ -1,8 +1,12 @@
 package br.com.joao.justasimplerpgtable.model.mapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import br.com.joao.justasimplerpgtable.model.dto.PersonagemDtoPadrao;
+import br.com.joao.justasimplerpgtable.model.entity.JogadorEntity;
 import br.com.joao.justasimplerpgtable.model.entity.PersonagemEntity;
 
 @Service
@@ -34,6 +38,14 @@ public class PersonagemMapper {
 		entity.setHp(dto.hp);
 		entity.setMp(dto.mp);
 		return entity;
+	}
+	
+	public List<PersonagemDtoPadrao> toDtoPedraoList(List<PersonagemEntity> entities){
+		ArrayList<PersonagemDtoPadrao> dtoPadroes = new ArrayList<PersonagemDtoPadrao>();
+		for(PersonagemEntity personagemEntity: entities) {
+			dtoPadroes.add(this.toDtoPadrao(personagemEntity));
+		}
+		return dtoPadroes;
 	}
 	
 }

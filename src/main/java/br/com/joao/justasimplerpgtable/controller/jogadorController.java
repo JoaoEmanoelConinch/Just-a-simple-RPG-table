@@ -40,28 +40,28 @@ public class jogadorController {
 	@PostMapping
 	public ResponseEntity<JogadorDtoPadrao> post(@RequestBody JogadorDtoCadastro jogadorDtoCadastro){
 		JogadorEntity entity = jogadorMapper.toEnatityByCadastro(jogadorDtoCadastro);
-		JogadorDtoPadrao jogadorDtoPadrao = jogadorMapper.toDtoPedrao(jogadorService.save(entity));
+		JogadorDtoPadrao jogadorDtoPadrao = jogadorMapper.toDtoPadrao(jogadorService.save(entity));
 		return ResponseEntity.ok().body(jogadorDtoPadrao);
 	}
 	
 	@GetMapping("/find/{id}")
 	public ResponseEntity<JogadorDtoPadrao> getById(@PathVariable("id") Long id){
 		JogadorEntity entity = jogadorService.getById(id);
-		return ResponseEntity.ok().body(jogadorMapper.toDtoPedrao(entity));
+		return ResponseEntity.ok().body(jogadorMapper.toDtoPadrao(entity));
 	}
 	
 	@GetMapping("/find/all")
 	public ResponseEntity<List<JogadorDtoPadrao>> getAll(){
 		List<JogadorEntity> jogadorEntities = jogadorService.getAll();
-		List<JogadorDtoPadrao> dtoPadroes = jogadorMapper.toDtoPedraoList(jogadorEntities);
+		List<JogadorDtoPadrao> dtoPadroes = jogadorMapper.toDtoPadraoList(jogadorEntities);
 		return ResponseEntity.ok().body(dtoPadroes);
 	}
 	
 	@PutMapping("/update/{id}")
 	public ResponseEntity<JogadorDtoPadrao> put(@PathVariable("id") Long id, @RequestBody JogadorDtoPadrao jogadorDtoPadrao){
-		JogadorEntity entity = jogadorMapper.toEnatityByPedrao(jogadorDtoPadrao);
-		JogadorDtoPadrao dtoPadrao = jogadorMapper.toDtoPedrao(jogadorService.put(id, entity));
-		return ResponseEntity.ok().body(jogadorMapper.toDtoPedrao(entity));
+		JogadorEntity entity = jogadorMapper.toEnatityByPadrao(jogadorDtoPadrao);
+		JogadorDtoPadrao dtoPadrao = jogadorMapper.toDtoPadrao(jogadorService.put(id, entity));
+		return ResponseEntity.ok().body(dtoPadrao);
 	}
 	
 	@DeleteMapping("/delete?{id}")
