@@ -3,6 +3,11 @@
  */
 package br.com.joao.justasimplerpgtable.model.mapper;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.data.repository.query.ReturnedType;
 import org.springframework.stereotype.Service;
 
 import br.com.joao.justasimplerpgtable.model.dto.JogadorDtoCadastro;
@@ -30,7 +35,7 @@ public class JogadorMapper {
 		return jogadorDtoCadastro;
 	}
 	
-	public JogadorEntity toEnatityByPedrao(JogadorDtoPadrao jogadorDtoPadrao) {
+	public JogadorEntity toEnatityByPadrao(JogadorDtoPadrao jogadorDtoPadrao) {
 		JogadorEntity jogadorEntity = new JogadorEntity();
 		jogadorEntity.setNome(jogadorDtoPadrao.nome);
 		jogadorEntity.setSenha(jogadorDtoPadrao.senha);
@@ -39,13 +44,21 @@ public class JogadorMapper {
 		return jogadorEntity;
 	}
 	
-	public JogadorDtoPadrao toDtoPedrao(JogadorEntity jogadorEntity) {
+	public JogadorDtoPadrao toDtoPadrao(JogadorEntity jogadorEntity) {
 		JogadorDtoPadrao jogadorDtoPadrao = new JogadorDtoPadrao();
 		jogadorDtoPadrao.nome=jogadorEntity.getNome();
 		jogadorDtoPadrao.senha=jogadorEntity.getSenha();
 		jogadorDtoPadrao.ativo=jogadorEntity.getAtivo();
 		jogadorDtoPadrao.status=jogadorEntity.getStatus();
 		return jogadorDtoPadrao;
+	}
+
+	public List<JogadorDtoPadrao> toDtoPadraoList(List<JogadorEntity> jogadorEntities) {
+		ArrayList<JogadorDtoPadrao> dtoPadroes = new ArrayList<JogadorDtoPadrao>();
+		for (JogadorEntity jogadorEntity : jogadorEntities) {
+			dtoPadroes.add(this.toDtoPadrao(jogadorEntity));
+		}
+		return dtoPadroes;
 	}
 
 }
