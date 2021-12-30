@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.joao.justasimplerpgtable.model.entity.JogadorEntity;
 import br.com.joao.justasimplerpgtable.model.entity.PersonagemEntity;
-import br.com.joao.justasimplerpgtable.model.exceptiom.JoagdorNaoEncontrado;
+import br.com.joao.justasimplerpgtable.model.exceptiom.JogadorNaoEncontrado;
 import br.com.joao.justasimplerpgtable.model.repository.JogadorRepo;
 
 /**
@@ -31,7 +31,7 @@ public class JogadorService {
 
 	public JogadorEntity getById(Long id) {
 		return jogadorRepo.findJogadorEntityById(id)
-				.orElseThrow(() -> new JoagdorNaoEncontrado("Joagdor com id = " + id + " nao encontrado"));
+				.orElseThrow(() -> new JogadorNaoEncontrado("Joagdor com id = " + id + " nao encontrado"));
 	}
 
 	public List<JogadorEntity> getAll() {

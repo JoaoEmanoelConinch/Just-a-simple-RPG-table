@@ -6,9 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "O Jogador não existe")
-public class JoagdorNaoEncontrado extends RuntimeException {
+public class JogadorNaoEncontrado extends RuntimeException {
 
-	public JoagdorNaoEncontrado(String msg) {
+	public JogadorNaoEncontrado(String msg) {
 		super(msg);
 	}
 
