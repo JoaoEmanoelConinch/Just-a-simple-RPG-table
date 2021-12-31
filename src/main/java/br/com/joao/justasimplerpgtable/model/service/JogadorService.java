@@ -1,9 +1,7 @@
 package br.com.joao.justasimplerpgtable.model.service;
 
-import java.io.Serializable;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.joao.justasimplerpgtable.model.entity.JogadorEntity;
@@ -18,11 +16,15 @@ import br.com.joao.justasimplerpgtable.model.repository.JogadorRepo;
 @Service
 public class JogadorService {
 
-	@Autowired
-	private JogadorRepo jogadorRepo;
 	
-	@Autowired
-	private PersonagemService personagemService;
+	private final JogadorRepo jogadorRepo;
+	
+	public JogadorService(JogadorRepo jogadorRepo, PersonagemService personagemService) {
+		this.jogadorRepo = jogadorRepo;
+		this.personagemService = personagemService;
+	}
+
+	private final PersonagemService personagemService;
 
 	public JogadorEntity save(JogadorEntity entity) {
 		entity.setId(null);

@@ -14,10 +14,12 @@ import br.com.joao.justasimplerpgtable.model.repository.PersonegemRepo;
 @Service
 public class PersonagemService {
 
-	@Autowired
-	private PersonegemRepo perssonegemrepo;
+	private final PersonegemRepo perssonegemrepo;
 	
-	
+	public PersonagemService(PersonegemRepo perssonegemrepo) {
+		this.perssonegemrepo = perssonegemrepo;
+	}
+
 	public PersonagemEntity save(PersonagemEntity entity) {
 		entity.setId(null);
 		return perssonegemrepo.save(entity);
