@@ -40,7 +40,6 @@ public class JogadorMapper {
 		jogadorEntity.setNome(jogadorDtoPadrao.nome);
 		jogadorEntity.setSenha(jogadorDtoPadrao.senha);
 		jogadorEntity.setAtivo(jogadorDtoPadrao.ativo);
-		jogadorEntity.setStatus(jogadorDtoPadrao.status);
 		return jogadorEntity;
 	}
 	
@@ -49,7 +48,6 @@ public class JogadorMapper {
 		jogadorDtoPadrao.nome=jogadorEntity.getNome();
 		jogadorDtoPadrao.senha=jogadorEntity.getSenha();
 		jogadorDtoPadrao.ativo=jogadorEntity.getAtivo();
-		jogadorDtoPadrao.status=jogadorEntity.getStatus();
 		return jogadorDtoPadrao;
 	}
 

@@ -26,16 +26,23 @@ public class JogadorService {
 
 	public JogadorEntity save(JogadorEntity entity) {
 		entity.setId(null);
+
+		//nome e senha são unique
+
 		return jogadorRepo.save(entity);
 	}
 
 	public JogadorEntity getById(Long id) {
-		return jogadorRepo.findJogadorEntityById(id)
+		return jogadorRepo.findJogadorEntityByIdAndAtivoTrue(id)
 				.orElseThrow(() -> new JogadorNaoEncontrado("Joagdor com id = " + id + " nao encontrado"));
 	}
 
 	public List<JogadorEntity> getAll() {
 		return jogadorRepo.findAll();
+	}
+
+	public List<JogadorEntity> getAllByNome(String nome_jogador) {
+		return jogadorRepo.findJogadorEntityByAtivoTrueAndNomeContaining(nome_jogador);
 	}
 	
 	public JogadorEntity put(Long id, JogadorEntity jogadorEntity) {

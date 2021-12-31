@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.joao.justasimplerpgtable.model.dto.JogadorDtoCadastro;
@@ -53,6 +52,13 @@ public class jogadorController {
 	@GetMapping("/find/all")
 	public ResponseEntity<List<JogadorDtoPadrao>> getAll(){
 		List<JogadorEntity> jogadorEntities = jogadorService.getAll();
+		List<JogadorDtoPadrao> dtoPadroes = jogadorMapper.toDtoPadraoList(jogadorEntities);
+		return ResponseEntity.ok().body(dtoPadroes);
+	}
+
+	@GetMapping("/find/name/{nome}")
+	public ResponseEntity<List<JogadorDtoPadrao>> getAllByNome(@PathVariable("nome") String nome){
+		List<JogadorEntity> jogadorEntities = jogadorService.getAllByNome(nome);
 		List<JogadorDtoPadrao> dtoPadroes = jogadorMapper.toDtoPadraoList(jogadorEntities);
 		return ResponseEntity.ok().body(dtoPadroes);
 	}

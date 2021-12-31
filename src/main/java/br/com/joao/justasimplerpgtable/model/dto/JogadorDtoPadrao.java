@@ -13,7 +13,6 @@ public class JogadorDtoPadrao {
 
 	public String nome;
 	public String senha;
-	public StatusJogador status;
 	public Boolean ativo;
 
 }

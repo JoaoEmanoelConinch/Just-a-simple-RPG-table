@@ -36,10 +36,6 @@ public class JogadorEntity implements Serializable {
 	@Column(name = "senha_jogador", nullable = false, unique = true)
 	private String senha;
 
-	// hitoria_jogedor
-	@Enumerated(EnumType.STRING)
-	private StatusJogador status;
-
 	@Column(name = "is_ativo_jogador")
 	private boolean ativo = true;
 
@@ -53,16 +49,15 @@ public class JogadorEntity implements Serializable {
 	 * @param status
 	 * @param personagens
 	 */
-	public JogadorEntity(Long id, String nome, String senha, StatusJogador status, List<PersonagemEntity> personagens, Boolean ativo) {
-		this(nome,senha,status,personagens,ativo);
+	public JogadorEntity(Long id, String nome, String senha, List<PersonagemEntity> personagens, Boolean ativo) {
+		this(nome,senha,personagens,ativo);
 		this.setId(id);
 	}
 
-	public JogadorEntity(String nome, String senha, StatusJogador status , List<PersonagemEntity> personagens,
+	public JogadorEntity(String nome, String senha, List<PersonagemEntity> personagens,
 			Boolean ativo) {
 		this.setNome(nome);
 		this.setSenha(senha);
-		this.setStatus(status);
 		this.setPersonagens(personagens);
 		this.setAtivo(ativo);
 	}
@@ -113,20 +108,6 @@ public class JogadorEntity implements Serializable {
 	}
 
 	/**
-	 * @return the status
-	 */
-	public StatusJogador getStatus() {
-		return status;
-	}
-
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(StatusJogador status) {
-		this.status = status;
-	}
-
-	/**
 	 * @return the personagens
 	 */
 	public List<PersonagemEntity> getPersonagens() {
@@ -155,7 +136,7 @@ public class JogadorEntity implements Serializable {
 
 	@Override
 	public String toString() {
-		return "JogadorEntity [nome=" + nome + ", status=" + status + "]";
+		return "JogadorEntity [nome=" + nome +"]";
 	}
 
 }
