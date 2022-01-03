@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import br.com.joao.justasimplerpgtable.model.entity.JogadorEntity;
 import br.com.joao.justasimplerpgtable.model.entity.PersonagemEntity;
 import br.com.joao.justasimplerpgtable.model.exceptiom.JogadorNaoEncontrado;
+import br.com.joao.justasimplerpgtable.model.exceptiom.NomeExistsExcptiom;
+import br.com.joao.justasimplerpgtable.model.exceptiom.SenhaExisteExcptiom;
 import br.com.joao.justasimplerpgtable.model.repository.JogadorRepo;
 
 /**
@@ -31,8 +33,13 @@ public class JogadorService {
 		entity.setId(null);
 		entity.setPersonagens(new ArrayList<PersonagemEntity>());
 
-		//nome e senha são unique
-
+		if(jogadorRepo.nomeExiste(entity.getNome())){
+			throw new NomeExistsExcptiom(" Esse nome já é usando por outro jogador ");
+		}
+		if(jogadorRepo.senhaExiste(entity.getSenha())){
+			throw new SenhaExisteExcptiom(" Essa senha já é usanda por outro jogador ");
+		}
+		
 		return jogadorRepo.save(entity);
 	}
 
