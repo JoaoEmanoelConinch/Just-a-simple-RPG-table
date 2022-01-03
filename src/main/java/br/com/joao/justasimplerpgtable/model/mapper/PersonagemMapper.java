@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import br.com.joao.justasimplerpgtable.model.dto.PersonagemDtoPadrao;
-import br.com.joao.justasimplerpgtable.model.entity.JogadorEntity;
 import br.com.joao.justasimplerpgtable.model.entity.PersonagemEntity;
 
 @Service

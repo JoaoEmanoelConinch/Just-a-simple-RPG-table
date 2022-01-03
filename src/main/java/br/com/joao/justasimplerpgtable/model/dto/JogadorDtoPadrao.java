@@ -3,8 +3,6 @@
  */
 package br.com.joao.justasimplerpgtable.model.dto;
 
-import br.com.joao.justasimplerpgtable.model.enumeratiom.StatusJogador;
-
 /**
  * @author rodrigo
  *

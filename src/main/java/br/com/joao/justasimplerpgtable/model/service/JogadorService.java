@@ -1,5 +1,6 @@
 package br.com.joao.justasimplerpgtable.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -28,6 +29,7 @@ public class JogadorService {
 
 	public JogadorEntity save(JogadorEntity entity) {
 		entity.setId(null);
+		entity.setPersonagens(new ArrayList<PersonagemEntity>());
 
 		//nome e senha são unique
 

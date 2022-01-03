@@ -2,11 +2,8 @@ package br.com.joao.justasimplerpgtable.model.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mapping.context.PersistentEntities;
 import org.springframework.stereotype.Service;
 
-import br.com.joao.justasimplerpgtable.model.entity.JogadorEntity;
 import br.com.joao.justasimplerpgtable.model.entity.PersonagemEntity;
 import br.com.joao.justasimplerpgtable.model.exceptiom.PersonagemNaoEncontrado;
 import br.com.joao.justasimplerpgtable.model.repository.PersonegemRepo;
