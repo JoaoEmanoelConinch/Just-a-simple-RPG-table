@@ -33,12 +33,12 @@ public class JogadorService {
 		entity.setId(null);
 		entity.setPersonagens(new ArrayList<PersonagemEntity>());
 
-		if(jogadorRepo.nomeExiste(entity.getNome())){
-			throw new NomeExistsExcptiom(" Esse nome já é usando por outro jogador ");
-		}
-		if(jogadorRepo.senhaExiste(entity.getSenha())){
-			throw new SenhaExisteExcptiom(" Essa senha já é usanda por outro jogador ");
-		}
+		// if(jogadorRepo.nomeExiste(entity.getNome())){
+		// 	throw new NomeExistsExcptiom(" Esse nome já é usando por outro jogador ");
+		// }
+		// if(jogadorRepo.senhaExiste(entity.getSenha())){
+		// 	throw new SenhaExisteExcptiom(" Essa senha já é usanda por outro jogador ");
+		// }
 		
 		return jogadorRepo.save(entity);
 	}

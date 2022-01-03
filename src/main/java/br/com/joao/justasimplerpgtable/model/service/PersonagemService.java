@@ -32,12 +32,14 @@ public class PersonagemService {
 	}
 	
 	public PersonagemEntity put(Long id, PersonagemEntity entity) {
-		entity.setId(id);
+		PersonagemEntity personagemEntity = this.getById(id);
+		entity.setId(personagemEntity.getId());
 		return perssonagemrepo.save(entity);
 	}
 	
 	public void delete(Long id) {
-		perssonagemrepo.deleteById(id);
+		PersonagemEntity personagemEntity = this.getById(id);
+		perssonagemrepo.deleteById(personagemEntity.getId());
 	}
 	
 }
