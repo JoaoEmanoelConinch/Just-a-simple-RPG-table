@@ -49,7 +49,7 @@ public class JogadorService {
 	}
 
 	public List<JogadorEntity> getAll() {
-		return jogadorRepo.findAll();
+		return jogadorRepo.findJogadorEntityByAtivoTrue();
 	}
 
 	public List<JogadorEntity> getAllByNome(String nome_jogador) {

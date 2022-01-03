@@ -34,4 +34,7 @@ public interface JogadorRepo extends JpaRepository<JogadorEntity, Long> {
 	@Query("select case when count(jogador) > 0 then true else false end from JogadorEntity jogador wher jogador.senha = :senha")
     boolean senhaExiste(@Param("senha") String senha);
 
+	@Transactional
+    List<JogadorEntity> findJogadorEntityByAtivoTrue();
+
 }
