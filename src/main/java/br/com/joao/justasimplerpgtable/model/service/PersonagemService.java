@@ -6,38 +6,38 @@ import org.springframework.stereotype.Service;
 
 import br.com.joao.justasimplerpgtable.model.entity.PersonagemEntity;
 import br.com.joao.justasimplerpgtable.model.exceptiom.PersonagemNaoEncontrado;
-import br.com.joao.justasimplerpgtable.model.repository.PersonegemRepo;
+import br.com.joao.justasimplerpgtable.model.repository.PersonagemRepo;
 
 @Service
 public class PersonagemService {
 
-	private final PersonegemRepo perssonegemrepo;
+	private final PersonagemRepo perssonagemrepo;
 	
-	public PersonagemService(PersonegemRepo perssonegemrepo) {
-		this.perssonegemrepo = perssonegemrepo;
+	public PersonagemService(PersonagemRepo perssonagemrepo) {
+		this.perssonagemrepo = perssonagemrepo;
 	}
 
 	public PersonagemEntity save(PersonagemEntity entity) {
 		entity.setId(null);
-		return perssonegemrepo.save(entity);
+		return perssonagemrepo.save(entity);
 	}
 
 	public PersonagemEntity getById(Long id) {
-		return perssonegemrepo.findPersonagemEntityById(id)
+		return perssonagemrepo.findById(id)
 				.orElseThrow(() -> new PersonagemNaoEncontrado("Personage com id = " + id + " nao encontrado"));
 	}
 
 	public List<PersonagemEntity> getAll() {
-		return perssonegemrepo.findAll();
+		return perssonagemrepo.findAll();
 	}
 	
 	public PersonagemEntity put(Long id, PersonagemEntity entity) {
 		entity.setId(id);
-		return perssonegemrepo.save(entity);
+		return perssonagemrepo.save(entity);
 	}
 	
 	public void delete(Long id) {
-		perssonegemrepo.deleteById(id);
+		perssonagemrepo.deleteById(id);
 	}
 	
 }
