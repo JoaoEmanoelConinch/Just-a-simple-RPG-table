@@ -50,13 +50,10 @@ public class JogadorService {
 	public List<JogadorEntity> getAll() {
 		return jogadorRepo.findJogadorEntityByAtivoTrue();
 	}
-
-	public List<JogadorEntity> getAllByNome(String nome_jogador) {
-		return jogadorRepo.findJogadorEntityByAtivoTrueAndNomeContaining(nome_jogador);
-	}
 	
 	public JogadorEntity put(Long id, JogadorEntity jogadorEntity) {
-		jogadorEntity.setId(id);
+		JogadorEntity jogador =this.getById(id);
+		jogadorEntity.setId(jogador.getId());
 		return jogadorRepo.save(jogadorEntity);
 	}
 	
@@ -64,6 +61,10 @@ public class JogadorService {
 		JogadorEntity jogadorEntity = getById(id);
 		jogadorEntity.setAtivo(false);
 		jogadorRepo.save(jogadorEntity);
+	}
+
+	public List<JogadorEntity> getAllByNome(String nome_jogador) {
+		return jogadorRepo.findJogadorEntityByAtivoTrueAndNomeContaining(nome_jogador);
 	}
 	
 	public void AtribuirPersonagemAUmJogador (Long idPersonagem, Long idJogador) {
