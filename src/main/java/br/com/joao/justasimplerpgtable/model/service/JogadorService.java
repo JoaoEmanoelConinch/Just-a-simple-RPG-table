@@ -19,7 +19,6 @@ import br.com.joao.justasimplerpgtable.model.repository.JogadorRepo;
 @Service
 public class JogadorService {
 
-	
 	private final JogadorRepo jogadorRepo;
 	
 	public JogadorService(JogadorRepo jogadorRepo, PersonagemService personagemService) {
@@ -33,12 +32,12 @@ public class JogadorService {
 		entity.setId(null);
 		entity.setPersonagens(new ArrayList<PersonagemEntity>());
 
-		// if(jogadorRepo.nomeExiste(entity.getNome())){
-		// 	throw new NomeExistsExcptiom(" Esse nome já é usando por outro jogador ");
-		// }
-		// if(jogadorRepo.senhaExiste(entity.getSenha())){
-		// 	throw new SenhaExisteExcptiom(" Essa senha já é usanda por outro jogador ");
-		// }
+		if(jogadorRepo.existsJogadorEntityByNome(entity.getNome())){
+			throw new NomeExistsExcptiom(" Esse nome já é usando por outro jogador ");
+		}
+		if(jogadorRepo.existsJogadorEntityBySenha(entity.getSenha())){
+			throw new SenhaExisteExcptiom(" Essa senha já é usanda por outro jogador ");
+		}
 		
 		return jogadorRepo.save(entity);
 	}

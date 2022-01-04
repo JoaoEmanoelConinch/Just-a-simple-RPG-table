@@ -8,7 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import br.com.joao.justasimplerpgtable.model.entity.JogadorEntity;
-import br.com.joao.justasimplerpgtable.model.service.*;
+import br.com.joao.justasimplerpgtable.model.repository.JogadorRepo;
+import br.com.joao.justasimplerpgtable.model.*;
 
 
 @SpringBootApplication
@@ -19,11 +20,10 @@ public class JustasimplerpgtableApplication {
 	}
 
 	@Bean
-	CommandLineRunner commandLineRunner (JogadorService jogadorService) {
+	CommandLineRunner commandLineRunner (JogadorRepo jogadorRepo) {
 		return args -> {
 			System.out.println();
-			List<JogadorEntity> jogadorEntities = jogadorService.getAll();
-			jogadorEntities.stream().forEach(e -> System.out.println(e.getAtivo()));
+			System.out.println(jogadorRepo.existsJogadorEntityByNome("Joao"));
 			System.out.println();
 		};
 	}
