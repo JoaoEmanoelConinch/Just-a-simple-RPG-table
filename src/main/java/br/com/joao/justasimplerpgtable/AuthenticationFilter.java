@@ -1,7 +1,6 @@
 package br.com.joao.justasimplerpgtable;
 
 import java.io.IOException;
-import java.net.http.HttpRequest;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;

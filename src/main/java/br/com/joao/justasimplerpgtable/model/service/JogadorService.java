@@ -1,14 +1,15 @@
 package br.com.joao.justasimplerpgtable.model.service;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.joao.justasimplerpgtable.model.entity.JogadorEntity;
 import br.com.joao.justasimplerpgtable.model.entity.PersonagemEntity;
 import br.com.joao.justasimplerpgtable.model.exceptiom.JogadorNaoEncontrado;
+import br.com.joao.justasimplerpgtable.model.exceptiom.NomeExistsExcptiom;
+import br.com.joao.justasimplerpgtable.model.exceptiom.SenhaExisteExcptiom;
 import br.com.joao.justasimplerpgtable.model.repository.JogadorRepo;
 
 /**
@@ -18,28 +19,41 @@ import br.com.joao.justasimplerpgtable.model.repository.JogadorRepo;
 @Service
 public class JogadorService {
 
-	@Autowired
-	private JogadorRepo jogadorRepo;
+	private final JogadorRepo jogadorRepo;
 	
-	@Autowired
-	private PersonagemService personagemService;
+	public JogadorService(JogadorRepo jogadorRepo, PersonagemService personagemService) {
+		this.jogadorRepo = jogadorRepo;
+		this.personagemService = personagemService;
+	}
+
+	private final PersonagemService personagemService;
 
 	public JogadorEntity save(JogadorEntity entity) {
 		entity.setId(null);
+		entity.setPersonagens(new ArrayList<PersonagemEntity>());
+
+		if(jogadorRepo.existsJogadorEntityByNome(entity.getNome())){
+			throw new NomeExistsExcptiom(" Esse nome já é usando por outro jogador ");
+		}
+		if(jogadorRepo.existsJogadorEntityBySenha(entity.getSenha())){
+			throw new SenhaExisteExcptiom(" Essa senha já é usanda por outro jogador ");
+		}
+		
 		return jogadorRepo.save(entity);
 	}
 
 	public JogadorEntity getById(Long id) {
-		return jogadorRepo.findJogadorEntityById(id)
+		return jogadorRepo.findJogadorEntityByIdAndAtivoTrue(id)
 				.orElseThrow(() -> new JogadorNaoEncontrado("Joagdor com id = " + id + " nao encontrado"));
 	}
 
 	public List<JogadorEntity> getAll() {
-		return jogadorRepo.findAll();
+		return jogadorRepo.findJogadorEntityByAtivoTrue();
 	}
 	
 	public JogadorEntity put(Long id, JogadorEntity jogadorEntity) {
-		jogadorEntity.setId(id);
+		JogadorEntity jogador =this.getById(id);
+		jogadorEntity.setId(jogador.getId());
 		return jogadorRepo.save(jogadorEntity);
 	}
 	
@@ -47,6 +61,10 @@ public class JogadorService {
 		JogadorEntity jogadorEntity = getById(id);
 		jogadorEntity.setAtivo(false);
 		jogadorRepo.save(jogadorEntity);
+	}
+
+	public List<JogadorEntity> getAllByNome(String nome_jogador) {
+		return jogadorRepo.findJogadorEntityByAtivoTrueAndNomeContaining(nome_jogador);
 	}
 	
 	public void AtribuirPersonagemAUmJogador (Long idPersonagem, Long idJogador) {

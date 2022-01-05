@@ -35,19 +35,19 @@ public class PersonagemEntity implements Serializable {
 	private Genero genero;
 	
 	@Column(name = "ataque_personagem", nullable = false)
-	private Short ataque;
+	private Integer ataque;
 	
 	@Column(name = "defesa_personagem", nullable = false)
-	private Short defesa;
+	private Integer defesa;
 	
 	@Column(name = "agilidade_personagem", nullable = false)
-	private Short agilidade;
+	private Integer agilidade;
 	
 	@Column(name = "hp_personagem", nullable = false)
-	private Short hp;
+	private Integer hp;
 	
 	@Column(name = "mp_personagem", nullable = false)
-	private Short mp;
+	private Integer mp;
 	
 	@Column(name = "classe_personagem", nullable = false)
 	private Clase clase;
@@ -61,13 +61,13 @@ public class PersonagemEntity implements Serializable {
 	
 	public PersonagemEntity() {}
 	
-	public PersonagemEntity(Long id, String nome, String apelido, Genero genero, Short ataque, Short defesa, Short agilidade, Short hp, Short mp, Clase clase){
+	public PersonagemEntity(Long id, String nome, String apelido, Genero genero, Integer ataque, Integer defesa, Integer agilidade, Integer hp, Integer mp, Clase clase){
 		this(nome, apelido, genero, ataque, defesa, agilidade, hp, mp, clase);
 		this.setId(id);
 		
 	}
 	
-	public PersonagemEntity(String nome, String apelido, Genero genero, Short ataque, Short defesa, Short agilidade, Short hp, Short mp, Clase clase){
+	public PersonagemEntity(String nome, String apelido, Genero genero, Integer ataque, Integer defesa, Integer agilidade, Integer hp, Integer mp, Clase clase){
 		this.setNome(nome);
 		this.setApelido(apelido);
 		this.setGenero(genero);
@@ -130,61 +130,61 @@ public class PersonagemEntity implements Serializable {
 	/**
 	 * @return the ataque
 	 */
-	public Short getAtaque() {
+	public Integer getAtaque() {
 		return ataque;
 	}
 	/**
 	 * @param ataque the ataque to set
 	 */
-	public void setAtaque(Short ataque) {
+	public void setAtaque(Integer ataque) {
 		this.ataque = ataque;
 	}
 	/**
 	 * @return the defesa
 	 */
-	public Short getDefesa() {
+	public Integer getDefesa() {
 		return defesa;
 	}
 	/**
 	 * @param defesa the defesa to set
 	 */
-	public void setDefesa(Short defesa) {
+	public void setDefesa(Integer defesa) {
 		this.defesa = defesa;
 	}
 	/**
 	 * @return the agilidade
 	 */
-	public Short getAgilidade() {
+	public Integer getAgilidade() {
 		return agilidade;
 	}
 	/**
 	 * @param agilidade the agilidade to set
 	 */
-	public void setAgilidade(Short agilidade) {
+	public void setAgilidade(Integer agilidade) {
 		this.agilidade = agilidade;
 	}
 	/**
 	 * @return the hp
 	 */
-	public Short getHp() {
+	public Integer getHp() {
 		return hp;
 	}
 	/**
 	 * @param hp the hp to set
 	 */
-	public void setHp(Short hp) {
+	public void setHp(Integer hp) {
 		this.hp = hp;
 	}
 	/**
 	 * @return the mp
 	 */
-	public Short getMp() {
+	public Integer getMp() {
 		return mp;
 	}
 	/**
 	 * @param mp the mp to set
 	 */
-	public void setMp(Short mp) {
+	public void setMp(Integer mp) {
 		this.mp = mp;
 	}
 	/**

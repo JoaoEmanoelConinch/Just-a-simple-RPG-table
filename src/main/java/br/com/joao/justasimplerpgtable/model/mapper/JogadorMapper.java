@@ -5,9 +5,7 @@ package br.com.joao.justasimplerpgtable.model.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.springframework.data.repository.query.ReturnedType;
 import org.springframework.stereotype.Service;
 
 import br.com.joao.justasimplerpgtable.model.dto.JogadorDtoCadastro;
@@ -40,7 +38,6 @@ public class JogadorMapper {
 		jogadorEntity.setNome(jogadorDtoPadrao.nome);
 		jogadorEntity.setSenha(jogadorDtoPadrao.senha);
 		jogadorEntity.setAtivo(jogadorDtoPadrao.ativo);
-		jogadorEntity.setStatus(jogadorDtoPadrao.status);
 		return jogadorEntity;
 	}
 	
@@ -49,7 +46,6 @@ public class JogadorMapper {
 		jogadorDtoPadrao.nome=jogadorEntity.getNome();
 		jogadorDtoPadrao.senha=jogadorEntity.getSenha();
 		jogadorDtoPadrao.ativo=jogadorEntity.getAtivo();
-		jogadorDtoPadrao.status=jogadorEntity.getStatus();
 		return jogadorDtoPadrao;
 	}
 
