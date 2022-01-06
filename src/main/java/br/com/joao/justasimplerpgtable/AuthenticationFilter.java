@@ -33,7 +33,7 @@ public class AuthenticationFilter implements Filter {
 		
 		if(Tokens.tokens.contains(authorization)
 				||httpServletRequest.getRequestURI().equals("/login")
-				||httpServletRequest.getRequestURI().equals("/Player")) {
+				||httpServletRequest.getRequestURI().contains("/Player")) {
 			chain.doFilter(request, response);
 		} else {
 			final HttpServletResponse httpServletResponse = (HttpServletResponse) response;
