@@ -37,4 +37,6 @@ public interface JogadorRepo extends JpaRepository<JogadorEntity, Long> {
 	@Transactional
     List<JogadorEntity> findJogadorEntityByAtivoTrue();
 
+    Optional<JogadorEntity> findJogadorEntityByNomeAndSenhaAndAtivoTrue(String nome, String senha);
+
 }

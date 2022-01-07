@@ -16,11 +16,20 @@ services:
       - SPRING_DATASOURCE_USERNAME=joao
       - SPRING_DATASOURCE_PASSWORD=zawarudo
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_PROFILES_ACTIVE=dev
+      - SERVER_PORT=8765
           
   db:
     image: 'postgres:13.1-alpine'
     container_name: db
     restart: always
+    volumes: 
+      - postgresdata:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=joao
       - POSTGRES_PASSWORD=zawarudo
+
+volumes:
+  postgresdata:
+    external: 
+      name: postgresdata

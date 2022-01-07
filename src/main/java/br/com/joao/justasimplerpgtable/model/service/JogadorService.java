@@ -11,6 +11,7 @@ import br.com.joao.justasimplerpgtable.model.exceptiom.JogadorNaoEncontrado;
 import br.com.joao.justasimplerpgtable.model.exceptiom.NomeExistsExcptiom;
 import br.com.joao.justasimplerpgtable.model.exceptiom.SenhaExisteExcptiom;
 import br.com.joao.justasimplerpgtable.model.repository.JogadorRepo;
+import br.com.joao.justasimplerpgtable.model.exceptiom.LoginExceptiom;
 
 /**
  * @author JoaoEmanoelConinch
@@ -76,6 +77,11 @@ public class JogadorService {
 		
 		jogadorEntity.getPersonagens().add(personagemEntity);
 		this.put(idJogador, jogadorEntity);
+	}
+
+	public JogadorEntity getByNameAndPassword(String nome, String senha){
+		return jogadorRepo.findJogadorEntityByNomeAndSenhaAndAtivoTrue(nome , senha)
+				.orElseThrow(() -> new LoginExceptiom("nome ou senha errados"));
 	}
 
 }

@@ -22,12 +22,15 @@ public class JustasimplerpgtableApplication {
 		SpringApplication.run(JustasimplerpgtableApplication.class, args);
 	}
 
-	// @Bean
-	// CommandLineRunner commandLineRunner (JogadorService jogadorService) {
-	// 	return args -> {
-	// 		System.out.println();
-	// 		System.out.println();
-	// 	};
-	// }
+	@Bean
+	CommandLineRunner commandLineRunner (JogadorService jogadorService) {
+		return args -> {
+			System.out.println();
+			JogadorEntity jogador =jogadorService.getByNameAndPassword("JOJO", "ORAORA");
+			System.out.println();
+			System.out.println(jogador.getSenha());
+			System.out.println();
+		};
+	}
 	
 }

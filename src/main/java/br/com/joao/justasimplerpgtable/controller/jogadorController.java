@@ -70,7 +70,7 @@ public class jogadorController {
 		return ResponseEntity.ok().body(dtoPadrao);
 	}
 	
-	@DeleteMapping("/delete?{id}")
+	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Void> delete(@PathVariable("id") Long id){
 		jogadorService.delete(id);
 		return ResponseEntity.ok().build();
