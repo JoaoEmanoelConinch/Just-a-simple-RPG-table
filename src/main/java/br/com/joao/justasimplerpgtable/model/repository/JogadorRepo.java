@@ -9,8 +9,6 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import br.com.joao.justasimplerpgtable.model.entity.JogadorEntity;
@@ -36,5 +34,8 @@ public interface JogadorRepo extends JpaRepository<JogadorEntity, Long> {
 
 	@Transactional
     List<JogadorEntity> findJogadorEntityByAtivoTrue();
+
+	@Transactional
+	Optional<JogadorEntity> findJogadorEntityByNomeAndSenhaAndAtivoTrue(String nome, String senha);
 
 }
